@@ -28,7 +28,7 @@ class Checkout
     {
         try {
           if($this->userBalance < $amount){
-            throw new InsufficientFundsException('Недостаточно денег');
+            throw new InsufficientFundsException('Недостаточно денег: ');
           }
           if($this->paymentMethod != 'банковская карта'){
             throw new PaymentGatewayException('Ошибка при оплате');
@@ -48,5 +48,4 @@ class Checkout
             print "Ошибка при оплате: " . $e->getMessage();
         }
       }
-      
 }

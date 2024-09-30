@@ -6,22 +6,26 @@ use Egor\Trading\Product;
 use Egor\Trading\Exception\ItemOutOfStockException;
 use Egor\Trading\Exception\CartLimitExceededException;
 
-class CartTest extends TestCase {
-    public function testAddItemToCart() {
+class CartTest extends TestCase
+{
+    public function testAddItemToCart()
+    {
         $product = new Product("T-shirt", 100, 10);
         $cart = new Cart();
         $cart->addItem($product, 2);
         $this->assertEquals(8, $product->getStock());
     }
 
-    public function testItemOutOfStockException() {
+    public function testItemOutOfStockException()
+    {
         $this->expectException(ItemOutOfStockException::class);
         $product = new Product("T-shirt", 100, 1);
         $cart = new Cart();
         $cart->addItem($product, 2);
     }
 
-    public function testCartLimitExceededException() {
+    public function testCartLimitExceededException()
+    {
         $this->expectException(CartLimitExceededException::class);
         $cart = new Cart(1); // Ограничим корзину до 1 товара
         $product1 = new Product("T-shirt", 100, 10);
